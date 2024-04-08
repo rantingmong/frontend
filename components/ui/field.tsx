@@ -1,13 +1,19 @@
 import { LucideIcon } from "lucide-react";
 
-export function Field({ children, label, icon: Icon, iconClassName, orientation }: FieldProps) {
+export function Field({
+  children,
+  label,
+  icon: Icon,
+  iconStyles,
+  orientation,
+}: FieldProps) {
   return (
     <div
-      className="flex flex-col data-[orientation=horizontal]:gap-2 data-[orientation=horizontal]:flex-row"
+      className="flex flex-col data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:gap-2"
       data-orientation={orientation ?? "vertical"}
     >
-      <div className="text-sm flex flex-row gap-2 items-center">
-        {Icon && <Icon className={iconClassName} size={12} />}
+      <div className="flex flex-row items-center gap-2 text-sm">
+        {Icon && <Icon size={12} style={iconStyles} />}
         <span>{label}</span>
       </div>
       {children}
@@ -17,7 +23,7 @@ export function Field({ children, label, icon: Icon, iconClassName, orientation 
 
 type FieldProps = React.PropsWithChildren<{
   icon?: LucideIcon;
-  iconClassName?: string;
+  iconStyles?: React.CSSProperties;
   label: React.ReactNode;
-  orientation: "horizontal" | "vertical";
+  orientation?: "horizontal" | "vertical";
 }>;

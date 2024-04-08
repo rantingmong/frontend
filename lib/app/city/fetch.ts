@@ -1,16 +1,16 @@
 "use server";
 
 export async function fetchCities(query: string) {
-  const queryString = new URLSearchParams();
-  queryString.set("q", query);
-  queryString.set("limit", "10");
-  queryString.set("appid", process.env.WEATHER_API_KEY ?? "");
+  const requestString = new URLSearchParams();
+  requestString.set("q", query);
+  requestString.set("limit", "10");
+  requestString.set("appid", process.env.WEATHER_API_KEY ?? "");
 
   const requestUrl =
     process.env.WEATHER_API_URL?.concat(
       "geo/1.0/direct",
       "?",
-      queryString.toString(),
+      requestString.toString(),
     ) ?? "";
 
   return fetch(requestUrl).then(async (response) => {
@@ -34,11 +34,13 @@ export async function fetchCities(query: string) {
   });
 }
 
+export type CityLocation = {
+  lat: number;
+  lng: number;
+};
+
 export type City = {
-  location: {
-    lat: number;
-    lng: number;
-  };
+  location: CityLocation;
   label: string;
   state: string;
   country: string;

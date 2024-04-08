@@ -1,5 +1,5 @@
 import { isEmpty } from "lodash";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { create } from "zustand";
 import { City, fetchCities } from "./city/fetch";
 
@@ -14,7 +14,7 @@ export function useCitySearch() {
   const [result, setResult] = useState<City[]>([]);
 
   return {
-    doQuery(value: string) {
+    doQuery: useCallback(function (value: string) {
       if (isEmpty(value)) {
         setResult([]);
         return;
@@ -32,10 +32,10 @@ export function useCitySearch() {
           .catch(() => setResult([]))
           .finally(() => setFetching(false));
       }, 1000);
-    },
-    selectCity(city: City) {
+    }, []),
+    selectCity: useCallback(function (city: City) {
       cityStore.setState({ current: city });
-    },
+    }, []),
     result,
     fetching,
   };

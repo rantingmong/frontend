@@ -1,13 +1,14 @@
+"use client";
+
+import { useWeatherForecast } from "@/lib/app/forecast";
 import ContentItem from "./content/item";
 
 export default function ForecastContent() {
+  const forecast = useWeatherForecast();
+
   return (
-    <div className="flex flex-col gap-2 px-3">
-      <ContentItem />
-      <ContentItem />
-      <ContentItem />
-      <ContentItem />
-      <ContentItem />
-    </div>
+    forecast?.map((day) => (
+      <ContentItem forecast={day} key={day.dt.getTime()} />
+    )) ?? null
   );
 }
