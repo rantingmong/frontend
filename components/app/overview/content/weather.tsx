@@ -8,7 +8,6 @@ export default function ContentWeather() {
         <div className="size-6 rounded-full bg-muted" />
         <h3 className="font-medium">Condition</h3>
       </div>
-      <p>Weather condition description</p>
     </Card>
   );
 }

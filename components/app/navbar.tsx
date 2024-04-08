@@ -6,7 +6,7 @@ const header = Merriweather({ subsets: ["latin"], weight: "700" });
 
 export default function AppNavbar() {
   return (
-    <div className="flex flex-col mb-3">
+    <div className="flex flex-col pb-3 sticky z-10 top-0 bg-background">
       <div className="flex flex-row items-center gap-4 px-6 py-2">
         <span className={cn(header.className, "text-xl font-bold")}>le.weather</span>
         <div className="relative h-12 rounded-full bg-muted grow">
