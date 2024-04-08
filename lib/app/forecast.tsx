@@ -24,7 +24,7 @@ export function ForecastProvider({ children }: React.PropsWithChildren) {
   return (
     <context.Provider value={{ overview: state.data ?? undefined }}>
       {state.isLoading ? (
-        <Card className="flex flex-row items-center p-3">
+        <Card className="mx-3 flex flex-row items-center p-3">
           <LoaderCircle className="mr-2 animate-spin" />
           <span className="font-semibold">Fetching Forecast</span>
         </Card>

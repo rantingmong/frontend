@@ -1,15 +1,27 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
+import { useWeatherHistory } from "@/lib/app/history";
+import { Fragment } from "react";
 import ContentItem from "./content/item";
 
-export default function HistoryContent() {
+export default function HistoryContent({ loadingMore }: HistoryContentProps) {
+  const { history, paginate } = useWeatherHistory();
+
   return (
-    <div className="flex flex-col gap-2 px-3">
-      <ContentItem />
-      <ContentItem />
-      <ContentItem />
-      <ContentItem />
-      <ContentItem />
-      <Button variant="outline">Load More</Button>
-    </div>
+    <Fragment>
+      {history?.map((item) => <ContentItem key={item.date} history={item} />)}
+      <Button
+        disabled={loadingMore}
+        variant="outline"
+        onClick={!loadingMore ? paginate : undefined}
+      >
+        {loadingMore ? "Loading..." : "Load More"}
+      </Button>
+    </Fragment>
   );
 }
+
+type HistoryContentProps = {
+  loadingMore: boolean;
+};
