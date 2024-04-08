@@ -17,8 +17,6 @@ export async function fetchHistory(date: string, location: CityLocation) {
       requestQuery.toString(),
     ) ?? "";
 
-  console.log(requestUrl);
-
   return fetch(requestUrl).then(async (response) => {
     const content = await response.json();
 
