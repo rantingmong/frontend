@@ -1,3 +1,5 @@
+import ForecastContent from "@/components/app/forecast/content";
+
 export default function ForecastPage() {
-  return <span>Forecast</span>;
+  return <ForecastContent />;
 }
